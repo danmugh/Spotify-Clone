@@ -9,13 +9,14 @@ const Player = ({ spotify }) => {
     return (
 
         <div className="player">
-            <div className="player_body">
-                <Sidebar/>
-                <Body/>
+            <div className="player__body">
+                <Sidebar />
+                <Body spotify={spotify} />
             </div>
-            <Footer/>
+            <Footer spotify={spotify} />
         </div>
     );
 };
 
 export default Player;
+

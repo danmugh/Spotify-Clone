@@ -14,6 +14,7 @@ const Sidebar = () => {
         <div className="sidebar">
             <img className="sidebar__logo"
                  src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg"
+                 alt=""
             />
             <SidebarOption title="Home" Icon={HomeIcon} />
             <SidebarOption title="Search" Icon={SearchIcon} />

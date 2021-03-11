@@ -1,35 +1,70 @@
+import { findAllByDisplayValue } from "@testing-library/react";
+
 export const initialState = {
     user: null,
     playlists: [],
+    spotify: null,
+    discover_weekly: null,
+    top_artists: null,
     playing: false,
     item: null,
-    token: 'BQDu2eumG7_Xn9l2IfFuqwgaElLixvADT_xZf3QhV0VhN_OLYOxk1abRgglS0403HL1RTJxK7VMzAxV2NIVqe_DUSUyTk_jZoTC6Pj4QjtQxbYPUau-OgXYmYXGWxIcwhbmjFulfyTBIrp2NPYh3pW5ogsk7MJDDjUhrxYYzH39jXL-P'
-}
+};
 
-const reducer = (state = initialState, action) => {
-    console.log('action :', action)
-
-
+const reducer = (state, action) => {
+    // console.log(action);
     switch (action.type) {
         case "SET_USER":
             return {
                 ...state,
-                user: action.user
-            }
+                user: action.user,
+            };
+
+        case "SET_PLAYING":
+            return {
+                ...state,
+                playing: action.playing,
+            };
+
+        case "SET_ITEM":
+            return {
+                ...state,
+                item: action.item,
+            };
+
+        case "SET_DISCOVER_WEEKLY":
+            return {
+                ...state,
+                discover_weekly: action.discover_weekly,
+            };
+
+        case "SET_TOP_ARTISTS":
+            return {
+                ...state,
+                top_artists: action.top_artists,
+            };
+
         case "SET_TOKEN":
             return {
                 ...state,
-                token: action.token
-            }
+                token: action.token,
+            };
+
+        case "SET_SPOTIFY":
+            return {
+                ...state,
+                spotify: action.spotify,
+            };
+
         case "SET_PLAYLISTS":
             return {
                 ...state,
-                playlists: action.playlists
-            }
-
-        default :
-            return state
+                playlists: action.playlists,
+            };
+        default:
+            return state;
     }
-}
+};
+
+// token: 'BQDu2eumG7_Xn9l2IfFuqwgaElLixvADT_xZf3QhV0VhN_OLYOxk1abRgglS0403HL1RTJxK7VMzAxV2NIVqe_DUSUyTk_jZoTC6Pj4QjtQxbYPUau-OgXYmYXGWxIcwhbmjFulfyTBIrp2NPYh3pW5ogsk7MJDDjUhrxYYzH39jXL-P'
 
 export default reducer;

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import Login from "./Login";
 import {getTokenFromUrl} from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
 import {userDataLayerValue} from "./DataLayer";
+import SmallDevice from "./SmallDevice";
 
 const spotify = new SpotifyWebApi();
 
 function App() {
-    // const [token, setToken] = useState(null)
-    const [{ user, token, playlists }, dispatch] = userDataLayerValue()
+    const [{token}, dispatch] = userDataLayerValue()
 
     useEffect(() => {
         const hash = getTokenFromUrl();
@@ -18,7 +18,12 @@ function App() {
         const _token = hash.access_token;
 
         if (_token) {
-            // setToken(_token)
+
+            dispatch({
+                type: "SET_SPOTIFY",
+                spotify: spotify,
+            });
+
             dispatch({
                 type: "SET_TOKEN",
                 token: _token
@@ -39,28 +44,65 @@ function App() {
                     playlists: playlists,
                 })
             })
+
+            // 37i9dQZEVXcIJazRV9ISoM
+            spotify.getPlaylist("3Gb6g6U9JJJHKP01l4JH23").then((response) => {
+                dispatch({
+                    type: "SET_DISCOVER_WEEKLY",
+                    discover_weekly: response,
+                })
+            })
+
+            spotify.getMyTopArtists().then((response) =>
+                dispatch({
+                    type: "SET_TOP_ARTISTS",
+                    top_artists: response,
+                })
+            )
+
+
         }
+
+
     }, [])
 
-    console.log('Here my token', token)
+    if (isMobile()) {
+        return (
+            <div className="App">
+                <SmallDevice/>
+            </div>
+        );
+    }
 
-    console.log('Here I am', user)
+    return (
+        <div className="App">
+            {
+                token ? (
+                    <Player spotify={spotify}/>
+                ) : (
+                    <Login/>
 
-    console.log('Here my playlist', playlists)
+                )
+            }
 
+        </div>
+    );
+}
 
-  return (
-    <div className="App">
-        {
-            token ? (
-                <Player spotify={spotify}/>
-            ) : (
-                <Login/>
-            )
-        }
+function isMobile() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
 
-    </div>
-  );
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
 }
 
 

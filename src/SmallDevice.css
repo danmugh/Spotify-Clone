@@ -1,0 +1,35 @@
+.small {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: black;
+
+}
+
+.small > img {
+    width: 100%;
+}
+
+.small > a {
+    padding: 20px;
+    border-radius: 99px;
+    background-color: #1db954;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright > p {
+    position:absolute;
+    bottom:0;
+    padding: 20px;
+    font-weight: 400;
+    color: white;
+
+}
