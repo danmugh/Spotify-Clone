@@ -12,11 +12,11 @@ import { Grid, Slider } from "@material-ui/core";
 import {userDataLayerValue} from "../DataLayer";
 
 function Footer({ spotify }) {
-    const [{ token, item, playing }, dispatch] = userDataLayerValue();
+    const [{ item, playing }, dispatch] = userDataLayerValue();
 
     useEffect(() => {
         spotify.getMyCurrentPlaybackState().then((r) => {
-            console.log(r);
+            // console.log(r);
 
             dispatch({
                 type: "SET_PLAYING",

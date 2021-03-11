@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import SidebarOption from "./SidebarOption";
 import {userDataLayerValue} from "../DataLayer";
+import Logo from "../img/img_1.jpg";
 
 const Sidebar = () => {
 
@@ -13,8 +14,10 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <img className="sidebar__logo"
-                 src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg"
+                 // src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg"
+                 src={Logo}
                  alt=""
+
             />
             <SidebarOption title="Home" Icon={HomeIcon} />
             <SidebarOption title="Search" Icon={SearchIcon} />
